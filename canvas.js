@@ -35,6 +35,7 @@ function Ship(x, y, dx) {
     this.update = function()
     {
         this.x = mousePosition.x;
+        this.draw();
     }
 }
 
@@ -71,6 +72,16 @@ for (var i = 0; i < 50; ++i) {
 
 
 /****** SPRITE ANIMATION ******/
+function animation() {
+    requestAnimationFrame(animation);
+    c.clearRect(0, 0, innerWidth, innerHeight);
+    
+    for (var i = 0; i < stars.length; ++i) {
+        stars[i].update();
+    }
+
+    ship.update();
+}
 function starMovement() 
 {
     requestAnimationFrame(starMovement);
@@ -78,6 +89,10 @@ function starMovement()
     for (var i = 0; i < stars.length; ++i ) {
         stars[i].update();
     }
+
+    //requestAnimationFrame(shipMovement);
+    //c.clearRect(0, 0, innerWidth, innerHeight);
+    ship.update();
 }
 
 function shipMovement() {
@@ -86,4 +101,4 @@ function shipMovement() {
     ship.update();
 }
 
-starMovement();
+animation();
