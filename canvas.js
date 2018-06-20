@@ -1,27 +1,15 @@
-//searches entire document and finds canvas variable
 var canvas = document.querySelector('canvas');
 
-//set width and height of canvas to the width of the browser screen
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-//allows drawing of elements that can be manipulated in a 2d space
 var c = canvas.getContext('2d');
 
 //create two windows inside the canvas, one for the game and one to store player data
 var leftWidth = (canvas.width / 3) * 2;
 var rightWidth = (canvas.width / 3);
 
-// c.beginPath();
-// c.strokeStyle = "red";
-// c.lineWidth = "1";
-// //left rectangle
-// c.rect(10, 10, leftWidth, canvas.height - 20);
-// //right rectangle
-// c.rect(leftWidth + 20, 10, rightWidth - 30, canvas.height - 20 )
-// c.stroke();
-
-function Star(x, y, dy) 
+function Star(x, y, dy, size) 
 {
     this.x = x;
     this.y = y;
@@ -29,7 +17,7 @@ function Star(x, y, dy)
 
     this.draw = function() 
     {
-        c.fillRect(x, y, 6, 6);
+        c.fillRect(this.x, this.y, size, size);
     }
 
     this.update = function()
@@ -37,22 +25,26 @@ function Star(x, y, dy)
         if (this.y >= innerHeight) {
             this.y = 10;
             this.x = Math.floor(Math.random() * leftWidth);
-            this.dy = Math.floor((Math.random() * 5) + 3);
+            this.dy = Math.floor((Math.random() * 2) + 5);
+            this.size = Math.floor(Math.random() * 4);
         }
+        this.y += this.dy;
+        this.draw();
     }
 }
 
-var star = new Star(Math.floor(Math.random() * leftWidth), Math.floor(Math.random() * innerHeight), Math.floor((Math.random() * 5) + 3));
+var stars = [];
+for (var i = 0; i < 50; ++i) {
+    stars.push(new Star(Math.floor(Math.random() * leftWidth), Math.floor(Math.random() * innerHeight), Math.floor((Math.random() * 3) + 3), Math.floor(Math.random() * 4)));
+}
 
-var x = Math.floor(Math.random() * leftWidth);
-var y = Math.floor(Math.random() * innerHeight);
-var dy = Math.floor((Math.random() * 5) + 3);
 function starMovement() 
 {
     requestAnimationFrame(starMovement);
     c.clearRect(0,0,innerWidth,innerHeight);
-
-    star.draw();
+    for (var i = 0; i < stars.length; ++i ) {
+        stars[i].update();
+    }
 }
 
 starMovement();
