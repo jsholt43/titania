@@ -34,9 +34,16 @@ function animation()
         }
         ship.update();
         if (shoot) {
-            for (var i = 0; i < bullets.length; ++i) {
-                bullets[i].update();
+            for (var i = 0; i < 3; ++i) {
+                bullets[i] = new Bullet(x_position, ship.y - (ship.size / 2), ship.size / 3, ship.x);
             }
+              // var bullet = new Bullet(x_position, ship.y - (ship.size / 2), ship.size / 3, ship.x);
+                //bullets[i].update();
+                shoot = false;
+            }
+        for (var i = 0; i < bullets.length; ++i) {
+            bullets[i].update();
         }
+        //}
     }
 }

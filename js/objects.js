@@ -50,16 +50,14 @@ function Star(x, y, dy, size)
     }
 }
 
-function Bullet(x, y, size, frozen_x) 
+function Bullet(x, y, size) 
 {
     this.x = x;
     this.y = y;
     this.size = size;
 
     this.draw = function() 
-    {
-       // var bullet = new Bullet(this.x, this.y, this.size, this.moving);
-        //bullets.push(bullet);        
+    {    
         c.beginPath();
         c.arc(this.x, this.y, this.size, 0 ,2*Math.PI);
         c.stroke(); 
@@ -67,14 +65,14 @@ function Bullet(x, y, size, frozen_x)
 
     this.update = function() 
     {
-        var xx = ship.x;
-        if (this.y <= 0) {
-            this.y = ship.y;
-            shoot = false;
-        }
-        this.y -= 3;
+        this.x = x_position;
         this.size = ship.size / 3;
-        this.draw();
+        if (this.y <= 0) {
+            this.y = 0;
+        } else {
+            this.y -= 4;
+            this.draw();
+        }
 
     }
 
