@@ -41,6 +41,7 @@ function Star(x, y, dy, size)
     this.x = x;
     this.y = y;
     this.dy = dy;
+    this.size = size;
 
     this.draw = function() 
     {
@@ -58,4 +59,10 @@ function Star(x, y, dy, size)
         this.y += this.dy;
         this.draw();
     }
+}
+
+function Bullet(x, y, dy, size) {
+    this.x = x;
+    this.y = y;
+    this.dy = dy;
 }
