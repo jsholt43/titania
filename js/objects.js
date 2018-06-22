@@ -31,7 +31,6 @@ function Ship(x, y, dx, size) {
         }
         this.y = (innerHeight - this.size - 5);
         this.size = leftWidth / 20;
-        console.log(this.size);
         this.draw();
     }
 }
@@ -61,8 +60,21 @@ function Star(x, y, dy, size)
     }
 }
 
-function Bullet(x, y, dy, size) {
+function Bullet(x, y, size) {
     this.x = x;
     this.y = y;
-    this.dy = dy;
+    this.size = size;
+
+    this.draw = function() {
+        c.beginPath();
+        c.arc(ship.x, ship.y, ship.size, 0, 2, 2*Math.pi)
+        c.stroke();
+    }
+
+    this.update = function() {
+        this.x = ship.x;
+        this.y += 2;
+        this.draw();
+    }
 }
+
