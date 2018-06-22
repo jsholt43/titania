@@ -3,19 +3,14 @@ var canvas = document.querySelector('canvas');
 //canvas.width = window.innerWidth - 2;
 //canvas.height = window.innerHeight - 2;
 
-//graphics getContext
 var c = canvas.getContext('2d');
 
 //create two windows inside the canvas, one for the game and one to store player data
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 var leftWidth = (canvas.width / 3) * 2; // 2/3 of canvas
 var rightWidth = (canvas.width / 3); // 1/3 of canvas
 
-var gamePause = false;
-
-var mouse = {
-    x: 0,
-    y: 0
-}
 
 var keys = {
     a: false,
@@ -24,35 +19,22 @@ var keys = {
     space: false
 }
 
-initializeCanvas();
+// function initializeCanvas() 
+// {
+//     window.addEventListener("resize", resizeCanvas, false);
+//     resizeCanvas();
+// }
 
-function initializeCanvas() 
-{
-    window.addEventListener("resize", resizeCanvas, false);
-    resizeCanvas();
-}
-
-function resizeCanvas() 
-{
-    canvas.width = window.innerWidth;
-    leftWidth = (canvas.width / 3) * 2;
-    canvas.height = window.innerHeight;
-    rightWidth = (canvas.width / 3);
-}
+// function resizeCanvas() 
+// {
+//     canvas.width = window.innerWidth;
+//     leftWidth = (canvas.width / 3) * 2;
+//     canvas.height = window.innerHeight;
+//     rightWidth = (canvas.width / 3);
+// }
 
 function event_KeyPress(e)
 {
-    // if (e.x != undefined && e.y != undefined) {
-    //     mouse.x = e.x;
-    //     mouse.y = e.y;
-    // }
-
-    /*
-    KEY CODES:
-    SPACE = 32;
-    A = 97;
-    D = 100;
-    */
     console.log(e.which);
     switch(e.which) {
         case 32:
@@ -86,7 +68,7 @@ function event_KeyPress(e)
 //     gamePause = false;
 // }
 
-window.addEventListener("keypress", event_KeyPress, false);
+// window.addEventListener("keypress", event_KeyPress, false);
 // window.addEventListener("mouseout", event_MouseOut, false);
 // window.addEventListener('mouseenter', event_MouseEnter, false);
 
@@ -103,7 +85,6 @@ function Ship(x, y, dx, size) {
 
     this.update = function()
     {
-        this.y = y;
         if (keys.a == true) {
             this.x -= 10;
             keys.a = !keys.a;
@@ -111,6 +92,20 @@ function Ship(x, y, dx, size) {
             this.x += 10;
             keys.d = !keys.d;
         }
+
+        if (this.x <= 0) {
+            this.x = 0;
+        } else if (this.x >= leftWidth) {
+            this.x = leftWidth;
+        }
+        if (this.size >= 20) {
+
+        } else if (this.size <= 15) {
+
+        }
+        this.y = (innerHeight - this.size - 5);
+        this.size = leftWidth / 20;
+        console.log(this.size);
         this.draw();
     }
 }
@@ -142,7 +137,7 @@ function Star(x, y, dy, size)
 
 
 /****** OBJECT CREATION ******/
-var ship = new Ship(rightWidth / 2, innerHeight - (leftWidth / 20) - 5, 0, leftWidth / 20);
+var ship = new Ship(leftWidth / 2, innerHeight - (leftWidth / 20) - 5, 0, leftWidth / 20);
 
 var stars = [];
 for (var i = 0; i < leftWidth / 2; ++i) {
@@ -155,7 +150,8 @@ for (var i = 0; i < leftWidth / 2; ++i) {
 function animation() 
 {
     requestAnimationFrame(animation);
-    //checks to see if the "P" key has been pressed
+
+    //checks to see if the "p" key has been pressed
     if (!keys.p) {
         c.clearRect(0, 0, innerWidth, innerHeight);
         for (var i = 0; i < stars.length; ++i) {
@@ -165,10 +161,13 @@ function animation()
     }
 }
 
-function game() {
-    console.log("");
-    window.addEventListener("keypress", event_KeyPress, false);
-    animation();
-}
+
+/****** GAME LOOP ******/
+// function game() 
+// {
+//     initializeCanvas();
+//     window.addEventListener("keypress", event_KeyPress, false);
+//     animation();
+// }
 
 game();
