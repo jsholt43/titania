@@ -67,13 +67,14 @@ function Bullet(x, y, size) {
 
     this.draw = function() {
         c.beginPath();
-        c.arc(ship.x, ship.y, ship.size, 0, 2, 2*Math.pi)
+        //c.arc(this.x, this.y + 100, this.size, 0, 2*Math.PI)
+        c.arc(this.x + this.size,this.y - this.size,this.size,0,2*Math.PI);
         c.stroke();
     }
 
     this.update = function() {
         this.x = ship.x;
-        this.y += 2;
+        this.y--;
         this.draw();
     }
 }
