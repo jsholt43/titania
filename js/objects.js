@@ -11,25 +11,15 @@ function Ship(x, y, dx, size) {
 
     this.update = function()
     {
-        if (keys.a) {
-            this.x -= 10;
-            keys.a = !keys.a;
-        } else if (keys.d) {
-            this.x += 10;
-            keys.d = !keys.d;
-        }
+        this.x = mouse.x;
 
         if (this.x <= 0) {
             this.x = 0;
         } else if (this.x >= leftWidth) {
             this.x = leftWidth;
         }
-        if (this.size >= 20) {
-
-        } else if (this.size <= 15) {
-
-        }
-        this.y = (innerHeight - this.size - 5);
+        console.log(mouse.x);
+        this.y = y;
         this.size = leftWidth / 20;
         this.draw();
     }

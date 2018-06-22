@@ -1,7 +1,10 @@
 function game() 
 {
     initializeCanvas();
+    
     window.addEventListener("keypress", event_KeyPress, false);
+    window.addEventListener("mousemove", event_MouseMove, false);
+
     animation();
 }
 

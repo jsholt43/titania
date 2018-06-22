@@ -7,6 +7,10 @@ canvas.height = window.innerHeight;
 var leftWidth = (canvas.width / 3) * 2; // 2/3 of canvas
 var rightWidth = (canvas.width / 3); // 1/3 of canvas
 
+var mouse = {
+    x: 0,
+    y: 0
+}
 
 var keys = {
     a: false,

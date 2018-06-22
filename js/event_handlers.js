@@ -20,3 +20,8 @@ function event_KeyPress(e)
             break;
     }
 }
+
+function event_MouseMove(e) {
+    mouse.x = event.x;
+    mouse.y = event.y;
+}
