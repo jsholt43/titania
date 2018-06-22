@@ -1,7 +1,7 @@
 var canvas = document.querySelector('canvas');
 
-canvas.width = window.innerWidth - 2;
-canvas.height = window.innerHeight - 2;
+//canvas.width = window.innerWidth - 2;
+//canvas.height = window.innerHeight - 2;
 
 //graphics getContext
 var c = canvas.getContext('2d');
@@ -9,6 +9,8 @@ var c = canvas.getContext('2d');
 //create two windows inside the canvas, one for the game and one to store player data
 var leftWidth = (canvas.width / 3) * 2; // 2/3 of canvas
 var rightWidth = (canvas.width / 3); // 1/3 of canvas
+
+var gamePause = false;
 
 var mouse = {
     x: 0,
@@ -18,15 +20,32 @@ var mouse = {
 var keys = {
     a: false,
     d: false,
+    p: false,
     space: false
 }
 
-function eventHandler(e)
+initializeCanvas();
+
+function initializeCanvas() 
 {
-    if (e.x != undefined && e.y != undefined) {
-        mouse.x = e.x;
-        mouse.y = e.y;
-    }
+    window.addEventListener("resize", resizeCanvas, false);
+    resizeCanvas();
+}
+
+function resizeCanvas() 
+{
+    canvas.width = window.innerWidth;
+    leftWidth = (canvas.width / 3) * 2;
+    canvas.height = window.innerHeight;
+    rightWidth = (canvas.width / 3);
+}
+
+function event_KeyPress(e)
+{
+    // if (e.x != undefined && e.y != undefined) {
+    //     mouse.x = e.x;
+    //     mouse.y = e.y;
+    // }
 
     /*
     KEY CODES:
@@ -34,6 +53,7 @@ function eventHandler(e)
     A = 97;
     D = 100;
     */
+    console.log(e.which);
     switch(e.which) {
         case 32:
             console.log("space");
@@ -47,11 +67,28 @@ function eventHandler(e)
             console.log("D");
             keys.d = true;
             break;
+        case 112:
+            console.log("P");
+            keys.p = !keys.p;
+            break;
     }
 }
 
-//window.addEventListener("mousemove", eventHandler, false);
-window.addEventListener("keypress", eventHandler, false);
+// function event_MouseOut(e)
+// {
+//     console.log("true");
+//     gamePause = true;
+// }
+
+// function event_MouseEnter(e)
+// {
+//     console.log("false");
+//     gamePause = false;
+// }
+
+window.addEventListener("keypress", event_KeyPress, false);
+// window.addEventListener("mouseout", event_MouseOut, false);
+// window.addEventListener('mouseenter', event_MouseEnter, false);
 
 function Ship(x, y, dx, size) {
     this.x = x;
@@ -69,14 +106,12 @@ function Ship(x, y, dx, size) {
         this.y = y;
         if (keys.a == true) {
             this.x -= 10;
-            keys.a = false;
+            keys.a = !keys.a;
         } else if (keys.d == true) {
             this.x += 10;
-            keys.d = false;
+            keys.d = !keys.d;
         }
-        console.log(keys.a);
         this.draw();
-
     }
 }
 
@@ -107,7 +142,8 @@ function Star(x, y, dy, size)
 
 
 /****** OBJECT CREATION ******/
-var ship = new Ship(rightWidth / 2, innerHeight - 20, 0, leftWidth / 20);
+var ship = new Ship(rightWidth / 2, innerHeight - (leftWidth / 20) - 5, 0, leftWidth / 20);
+
 var stars = [];
 for (var i = 0; i < leftWidth / 2; ++i) {
     stars.push(new Star(Math.floor(Math.random() * leftWidth), Math.floor(Math.random() * innerHeight), Math.floor((Math.random() * 3) + 3), Math.floor(Math.random() * 4)));
@@ -116,15 +152,23 @@ for (var i = 0; i < leftWidth / 2; ++i) {
 
 
 /****** SPRITE MOVEMENT ******/
-function animation() {
+function animation() 
+{
     requestAnimationFrame(animation);
-    c.clearRect(0, 0, innerWidth, innerHeight);
-    
-    for (var i = 0; i < stars.length; ++i) {
-        stars[i].update();
+    //checks to see if the "P" key has been pressed
+    if (!keys.p) {
+        c.clearRect(0, 0, innerWidth, innerHeight);
+        for (var i = 0; i < stars.length; ++i) {
+            stars[i].update();
+        }
+        ship.update();
     }
-
-    ship.update();
 }
 
-animation();
+function game() {
+    console.log("");
+    window.addEventListener("keypress", event_KeyPress, false);
+    animation();
+}
+
+game();
