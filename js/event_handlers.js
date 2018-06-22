@@ -4,7 +4,10 @@ function event_KeyPress(e)
     switch(e.which) {
         case 32:
             console.log("space");
-            keys.space = true;
+            //var bullet = new Bullet(ship.x, ship.y + 20, ship.size / 3, true);
+            //bullet.update();
+            shoot = true;
+            console.log(shoot);
             break;
         case 97: 
             console.log("A");
@@ -16,12 +19,13 @@ function event_KeyPress(e)
             break;
         case 112:
             console.log("P");
-            keys.p = !keys.p;
+            paused = !paused;
             break;
     }
 }
 
-function event_MouseMove(e) {
+function event_MouseMove(e) 
+{
     mouse.x = event.x;
     mouse.y = event.y;
 }

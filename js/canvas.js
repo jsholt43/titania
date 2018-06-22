@@ -7,14 +7,17 @@ canvas.height = window.innerHeight;
 var leftWidth = (canvas.width / 3) * 2; // 2/3 of canvas
 var rightWidth = (canvas.width / 3); // 1/3 of canvas
 
+var paused = false;
+var shoot = false;
+
 var mouse = {
     x: 0,
     y: 0
 }
 
 var keys = {
-    a: false,
-    d: false,
+    //a: false,
+    //d: false,
     p: false,
     space: false
 }
@@ -26,7 +29,10 @@ var stars = [];
 for (var i = 0; i < leftWidth / 2; ++i) {
     stars.push(new Star(Math.floor(Math.random() * leftWidth), Math.floor(Math.random() * innerHeight), Math.floor((Math.random() * 3) + 3), Math.floor(Math.random() * 4)));
 }
-
-var bullet = new Bullet(ship.x, ship.y + 20, ship.size / 3);
+var bullets = [];
+for (var i = 0; i < 50; ++i) {
+    bullets.push(new Bullet(ship.x, ship.y + 25, ship.size / 3, ship.x));
+    console.log(i);   
+}
 
 game();

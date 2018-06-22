@@ -1,7 +1,7 @@
 function game() 
 {
     initializeCanvas();
-    
+
     window.addEventListener("keypress", event_KeyPress, false);
     window.addEventListener("mousemove", event_MouseMove, false);
 
@@ -27,12 +27,16 @@ function animation()
     requestAnimationFrame(animation);
 
     //checks to see if the "p" key has been pressed
-    if (!keys.p) {
+    if (!paused) {
         c.clearRect(0, 0, innerWidth, innerHeight);
         for (var i = 0; i < stars.length; ++i) {
             stars[i].update();
         }
         ship.update();
-        bullet.update(); 
+        if (shoot) {
+            for (var i = 0; i < bullets.length; ++i) {
+                bullets[i].update();
+            }
+        }
     }
 }
