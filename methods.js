@@ -18,3 +18,17 @@ function resizeCanvas()
     canvas.height = window.innerHeight;
     rightWidth = (canvas.width / 3);
 }
+
+function animation() 
+{
+    requestAnimationFrame(animation);
+
+    //checks to see if the "p" key has been pressed
+    if (!keys.p) {
+        c.clearRect(0, 0, innerWidth, innerHeight);
+        for (var i = 0; i < stars.length; ++i) {
+            stars[i].update();
+        }
+        ship.update();
+    }
+}

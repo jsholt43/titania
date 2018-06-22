@@ -72,67 +72,67 @@ function event_KeyPress(e)
 // window.addEventListener("mouseout", event_MouseOut, false);
 // window.addEventListener('mouseenter', event_MouseEnter, false);
 
-function Ship(x, y, dx, size) {
-    this.x = x;
-    this.y = y;
-    this.dx = dx;
-    this.size = size;
+// function Ship(x, y, dx, size) {
+//     this.x = x;
+//     this.y = y;
+//     this.dx = dx;
+//     this.size = size;
 
-    this.draw = function()
-    {
-        c.fillRect(this.x, this.y, this.size, this.size);
-    }
+//     this.draw = function()
+//     {
+//         c.fillRect(this.x, this.y, this.size, this.size);
+//     }
 
-    this.update = function()
-    {
-        if (keys.a == true) {
-            this.x -= 10;
-            keys.a = !keys.a;
-        } else if (keys.d == true) {
-            this.x += 10;
-            keys.d = !keys.d;
-        }
+//     this.update = function()
+//     {
+//         if (keys.a == true) {
+//             this.x -= 10;
+//             keys.a = !keys.a;
+//         } else if (keys.d == true) {
+//             this.x += 10;
+//             keys.d = !keys.d;
+//         }
 
-        if (this.x <= 0) {
-            this.x = 0;
-        } else if (this.x >= leftWidth) {
-            this.x = leftWidth;
-        }
-        if (this.size >= 20) {
+//         if (this.x <= 0) {
+//             this.x = 0;
+//         } else if (this.x >= leftWidth) {
+//             this.x = leftWidth;
+//         }
+//         if (this.size >= 20) {
 
-        } else if (this.size <= 15) {
+//         } else if (this.size <= 15) {
 
-        }
-        this.y = (innerHeight - this.size - 5);
-        this.size = leftWidth / 20;
-        console.log(this.size);
-        this.draw();
-    }
-}
+//         }
+//         this.y = (innerHeight - this.size - 5);
+//         this.size = leftWidth / 20;
+//         console.log(this.size);
+//         this.draw();
+//     }
+// }
 
-function Star(x, y, dy, size) 
-{
-    this.x = x;
-    this.y = y;
-    this.dy = dy;
+// function Star(x, y, dy, size) 
+// {
+//     this.x = x;
+//     this.y = y;
+//     this.dy = dy;
 
-    this.draw = function() 
-    {
-        c.fillRect(this.x, this.y, this.size, this.size);
-    }
+//     this.draw = function() 
+//     {
+//         c.fillRect(this.x, this.y, this.size, this.size);
+//     }
 
-    this.update = function()
-    {
-        if (this.y >= innerHeight) {
-            this.y = 10;
-            this.x = Math.floor(Math.random() * leftWidth);
-            this.dy = Math.floor((Math.random() * 2) + 5);
-            this.size = Math.floor(Math.random() * 4);
-        }
-        this.y += this.dy;
-        this.draw();
-    }
-}
+//     this.update = function()
+//     {
+//         if (this.y >= innerHeight) {
+//             this.y = 10;
+//             this.x = Math.floor(Math.random() * leftWidth);
+//             this.dy = Math.floor((Math.random() * 2) + 5);
+//             this.size = Math.floor(Math.random() * 4);
+//         }
+//         this.y += this.dy;
+//         this.draw();
+//     }
+// }
 
 
 
@@ -147,19 +147,19 @@ for (var i = 0; i < leftWidth / 2; ++i) {
 
 
 /****** SPRITE MOVEMENT ******/
-function animation() 
-{
-    requestAnimationFrame(animation);
+// function animation() 
+// {
+//     requestAnimationFrame(animation);
 
-    //checks to see if the "p" key has been pressed
-    if (!keys.p) {
-        c.clearRect(0, 0, innerWidth, innerHeight);
-        for (var i = 0; i < stars.length; ++i) {
-            stars[i].update();
-        }
-        ship.update();
-    }
-}
+//     //checks to see if the "p" key has been pressed
+//     if (!keys.p) {
+//         c.clearRect(0, 0, innerWidth, innerHeight);
+//         for (var i = 0; i < stars.length; ++i) {
+//             stars[i].update();
+//         }
+//         ship.update();
+//     }
+// }
 
 
 /****** GAME LOOP ******/
