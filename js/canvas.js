@@ -23,6 +23,10 @@ for (var i = 0; i < leftWidth / 2; ++i) {
     stars.push(new Star(Math.floor(Math.random() * leftWidth), Math.floor(Math.random() * innerHeight), Math.floor((Math.random() * 3) + 3), Math.floor(Math.random() * 4)));
 }
 
-var bullet = new Bullet(ship.x, ship.y, ship.size / 2);
+var bullets = [];
+for (var i = 0; i < 100; ++i) {
+    bullets.push(new Bullet(ship.x, ship.y, ship.size / 2, false));
+    console.log(i);
+}
 
 game();

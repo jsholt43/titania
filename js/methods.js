@@ -30,7 +30,9 @@ function animation()
             stars[i].update();
         }
         ship.update();
-        bullet.update();
+        for (var i = 0; i < bullets.length; ++i) {
+            bullets[i].update();
+        }
     }
 }
 
