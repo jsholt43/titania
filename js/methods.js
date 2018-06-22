@@ -30,31 +30,6 @@ function animation()
             stars[i].update();
         }
         ship.update();
-        for (var i = 0; i < bullets.length; ++i) {
-            bullets[i].update();
-        }
-    }
-}
-
-function event_KeyPress(e)
-{
-    console.log(e.which);
-    switch(e.which) {
-        case 32:
-            console.log("space");
-            keys.space = true;
-            break;
-        case 97: 
-            console.log("A");
-            keys.a = true;
-            break;
-        case 100: 
-            console.log("D");
-            keys.d = true;
-            break;
-        case 112:
-            console.log("P");
-            keys.p = !keys.p;
-            break;
+        bullet.update(); 
     }
 }

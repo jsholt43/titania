@@ -60,17 +60,21 @@ function Star(x, y, dy, size)
     }
 }
 
-function Bullet(x, y, size, moving) {
+function Bullet(x, y, size) {
     this.x = x;
     this.y = y;
     this.size = size;
-    this.moving = moving;
+    var bullets = [];
 
     this.draw = function() {
-        c.beginPath();
-        //c.arc(this.x, this.y + 100, this.size, 0, 2*Math.PI)
-        c.arc(this.x + this.size,this.y - this.size,this.size / 10,0,2*Math.PI);
-        c.stroke();
+        if (keys.space) {
+            var bullet = new Bullet(this.x, this.y, this.size, this.moving);
+            bullets.push(bullet);
+            c.beginPath();
+            //c.arc(this.x, this.y + 100, this.size, 0, 2*Math.PI)
+            c.arc(this.x + this.size,this.y - this.size,this.size / 10,0,2*Math.PI);
+            c.stroke();
+        }
     }
 
     this.update = function() {
