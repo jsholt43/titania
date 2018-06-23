@@ -1,3 +1,8 @@
+function Canvas(_canvas)
+{
+
+}
+
 function Ship(x, y, dx, size) 
 {
     this.x = x;
@@ -19,7 +24,7 @@ function Ship(x, y, dx, size)
         } else if (this.x >= leftWidth - this.size) {
             this.x = leftWidth - this.size;
         }
-        this.y = y;
+        this.y = innerHeight - (innerHeight / 20) - 5;
         this.size = leftWidth / 20;
         this.draw();
     }
@@ -65,7 +70,6 @@ function Bullet(x, y, size)
 
     this.update = function() 
     {
-        this.x = x_position;
         this.size = ship.size / 3;
         if (this.y <= 0) {
             this.y = 0;
@@ -73,12 +77,5 @@ function Bullet(x, y, size)
             this.y -= 4;
             this.draw();
         }
-
     }
-
-    // this.fire = function() 
-    // {
-    //     this.y -= 10;
-    // }
 }
-
