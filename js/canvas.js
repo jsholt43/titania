@@ -1,3 +1,5 @@
+var canvas = document.querySelector('canvas');
+var c = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var leftWidth = (canvas.width / 3) * 2;
@@ -39,6 +41,7 @@ function resizeCanvas()
 function animation() 
 {
     requestAnimationFrame(animation);
+
     frameCounter++;
     
     if (!paused) {
