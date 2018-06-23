@@ -31,7 +31,6 @@ function Star(x, y, dy, size, array)
     this.y = y;
     this.dy = dy;
     this.size = size;
-    //this.array = this.createArray();
 
     this.draw = function() 
     {
@@ -52,7 +51,6 @@ function Star(x, y, dy, size, array)
 
     this.createArray = function()
     {
-        console.log("");
         var stars = [];
         for (var i = 0; i < leftWidth / 2; ++i) {
         stars.push(new Star(Math.floor(Math.random() * leftWidth), Math.floor(Math.random() * canvas.height), Math.floor((Math.random() * 3) + 3), Math.floor(Math.random() * 4)));
@@ -95,8 +93,8 @@ function Bullet(x, y, size)
 
     this.shoot = function()
     {
-        if (shoot && frameCounter >= 10) {
-            frameCounter = 0;
+        if (shoot && bulletInterval >= 10) {
+            bulletInterval = 0;
             bullets[bulletCount] = new Bullet(x_position + (ship.size / 2), ship.y - (ship.size / 2), ship.size / 3, ship.x);
             bulletCount++;
             shoot = false;
@@ -120,19 +118,18 @@ function Enemy(x, y, dy, size)
 
     this.draw = function()
     {
-        ctx.beginPath();
-        ctx.arc(75, 75, 50, 0, Math.PI * 2, true);
-        ctx.moveTo(110, 75);
-        ctx.arc(75, 75, 35, 0, Math.PI, false);
-        ctx.moveTo(65, 65);
-        ctx.arc(60, 65, 5, 0, Math.PI * 2, true);
-        ctx.moveTo(95, 65);
-        ctx.arc(90, 65, 5, 0, Math.PI * 2, true);
-        ctx.stroke();
+        c.fillRect(this.x, this.y, 100, 100);
     }
 
     this.update = function()
     {
+        this. y += dy;
         this.draw();
+    }
+
+    this.createNewEnemy = function()
+    {
+        console.log("");
+        enemies.push(new Enemy(Math.floor(Math.random() * leftWidth), 0, Math.random() * 4, Math.random() * 4));
     }
 }

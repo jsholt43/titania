@@ -1,8 +1,11 @@
 var frameCounter = 0;
 var paused = false;
 var shoot = false;
-var bulletCount = 0;
 var x_position = 0;
+
+var bulletCount = 0;
+var bulletInterval = 0;
+var enemyInterval = 0;
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;

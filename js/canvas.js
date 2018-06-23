@@ -1,8 +1,12 @@
 var ship = new Ship(leftWidth / 2, innerHeight - (leftWidth / 20) - 5, 0, leftWidth / 20);
+
 var stars = new Star;
 var stars = stars.createArray();
 
 var bullets = [];
+
+var enemies = [];
+enemies.push(new Enemy);
 
 
 function game() 
@@ -32,9 +36,18 @@ function resizeCanvas()
 function animation() 
 {
     requestAnimationFrame(animation);
-    frameCounter++;
     if (!paused) {
+        console.log(frameCounter);
+
+        bulletInterval++;
+        enemyInterval++;
+
+        if (enemyInterval % 30 == 0) {
+            (new Enemy).createNewEnemy();
+        }
+
         c.clearRect(0, 0, innerWidth, innerHeight);
+
         for (var i = 0; i < stars.length; ++i) {
             stars[i].update();
         }
@@ -43,6 +56,10 @@ function animation()
 
         for (var i = 0; i < bullets.length; ++i) {
             bullets[i].update();
+        }
+
+        for (var i = 0; i < enemies.length; ++i) {
+            enemies[i].update();
         }
     }
 }
