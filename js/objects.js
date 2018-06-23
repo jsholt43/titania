@@ -1,8 +1,3 @@
-function Canvas(_canvas)
-{
-
-}
-
 function Ship(x, y, dx, size) 
 {
     this.x = x;
