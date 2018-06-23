@@ -10,6 +10,6 @@ var mouse = {
 }
 
 var keys = {
-    p: true;
+    p: false;
     space: false
 }
