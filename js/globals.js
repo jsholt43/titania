@@ -4,6 +4,11 @@ var shoot = false;
 var bulletCount = 0;
 var x_position = 0;
 
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+var leftWidth = (canvas.width / 3) * 2;
+var rightWidth = (canvas.height / 3);
+
 var mouse = {
     x: 0,
     y: 0

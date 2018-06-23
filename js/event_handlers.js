@@ -3,6 +3,7 @@ function event_KeyPress(e)
     switch(e.which) {
         case 32:
             shoot = true;
+            bullets.push(new Bullet);
             x_position = ship.x;
             break;
         case 112:
